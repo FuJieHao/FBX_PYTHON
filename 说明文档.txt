@@ -1,0 +1,21 @@
+1.首先是环境的配置
+	我们假设python的环境已经搭建好了（不管是pycharm ,eclipse或者是其他）
+	然后需要关注的是如何把fbx 的 sdk 导入，这个其实在官网已经有所说明
+	我们在这里下载好sdk（平台，版本）
+	https://www.autodesk.com/developer-network/platform-technologies/fbx-sdk-2019-0
+		1）：把/Applications/Autodesk/FBX Python SDK/2019.0/lib/Python27_x86该路径下的fbx.so 和 fbxsip.so(这个是mac下），在windows是.dll文件，把这文件拷贝到
+			Windows：yourPythonPath\Lib\site-packages\
+			Mac OSX：/Library/Python/x.x/site-packages/
+			Linux：/usr/local/lib/pythonx.x/site-packages/
+		2）：如果可以的话，在python环境中import fbx 是不会报错的
+		3）：使用的时候，把上面Python27_x86目录下的FbxCommon.py拖到项目中
+
+2.在环境配置好后，按照官网给出的一个demo就是如何用Python的脚本生成一个fbx的场景（也就是代码中的fbx_create_cube.py)   当然这个里面对于python语言语法什么是没要求的，基本会编程的都可以看得懂（前提是你要懂fbx的东西，我不懂这个，所以大概看一下）
+
+3.然后尝试着去解析这个简单的cube模型。 找到几个函数（基本就是翻译c++的代码），里面有对于法线，切线，顶点这些的获取，获取以后存放到Node类里面，至于代码的内容（fbx_function.py)其实是数据结构中图的知识
+
+4.之后是提取这个信息，当然提取到就能进行相应的修改（当然我不懂这东西，也不知道要改什么），在(fbx_test.py里）定义解析函数FbxParse(fbxPath): 在这个里面初始场景，获取节点信息。（详见代码内部）
+
+5.至于更多的东西（python fbx类列表  或者是 fbx sdk 和 python FBX的差异，因为大多数的教程文档还是针对c++写的，里面有指出了与c++的sdk用法最大的区别，当然目测本身也没啥太多差别）可以参考官网：http://help.autodesk.com/view/FBX/2019/ENU/?guid=FBX_Developer_Help_scripting_with_python_fbx_differences_fbx_sdk_and_python_html
+
+6.补充：有些在网上看到的感觉有用的说明，都以注释的成分补充到相应的代码上了。
